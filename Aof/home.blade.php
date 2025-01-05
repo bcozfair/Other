@@ -1,4 +1,4 @@
-<x-hana title="HANA Semiconductor (Ayutthaya) Co.,Ltd.">
+<x-theme title="HANA Semiconductor (Ayutthaya) Co.,Ltd.">
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"
         style="z-index: -1; margin-top: -5%">
         <div class="carousel-inner">
@@ -141,4 +141,4 @@
             </div>
         </div>
     </div>
-</x-hana>
+</x-theme>
