@@ -1,0 +1,46 @@
+import RPi.GPIO as GPIO
+import time
+
+# กำหนดพิน
+TRIG = 23
+ECHO = 24
+LED = 18
+BUZZER = 17
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+GPIO.setup(LED, GPIO.OUT)
+GPIO.setup(BUZZER, GPIO.OUT)
+
+def distance():
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+
+    while GPIO.input(ECHO) == 0:
+        start = time.time()
+
+    while GPIO.input(ECHO) == 1:
+        end = time.time()
+
+    duration = end - start
+    dist = (duration * 34300) / 2
+    return dist
+
+try:
+    while True:
+        d = distance()
+        print("Distance: %.1f cm" % d)
+
+        if d < 20:
+            GPIO.output(LED, True)
+            GPIO.output(BUZZER, True)
+        else:
+            GPIO.output(LED, False)
+            GPIO.output(BUZZER, False)
+
+        time.sleep(0.5)
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
